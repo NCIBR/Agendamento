@@ -2,20 +2,41 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Painel de Salas Teams</title>
+    <title>Painel Rotativo de Salas</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; font-family: sans-serif; background-color: #333; }
-        .container { display: flex; width: 100%; height: 100%; }
-        .sala { width: 50%; height: 100%; border: none; box-sizing: border-box; }
-        .sala:first-child { border-right: 5px solid #222; } /* Linha divisória */
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #000; }
+        iframe { width: 100%; height: 100%; border: none; display: none; }
+        iframe.ativo { display: block; }
     </style>
-    <!-- Recarrega a página inteira a cada 5 minutos (300 segundos) para garantir sincronia -->
-    <meta http-equiv="refresh" content="300">
 </head>
 <body>
-    <div class="container">
-        <iframe class="sala" src="https://outlook.office365.com/calendar/published/74e2d162a59e448c9bcda25ba87d6562@ncibr.com.br/3ac4252952114f818e77fda80dbd8aa716538616911842113870/calendar.html"></iframe>
-       
-    </div>
+
+    <!-- Os dois painéis das salas carregados juntos de fundo -->
+    <iframe id="sala1" class="ativo" src="https://outlook.office365.com/calendar/published/74e2d162a59e448c9bcda25ba87d6562@ncibr.com.br/3ac4252952114f818e77fda80dbd8aa716538616911842113870/calendar.html"></iframe>
+    <iframe id="sala2" src="https://outlook.office365.com/calendar/published/3e35e5592a76415185864585b2f46b06@ncibr.com.br/9ebacd812cbf4a8fa79b06334754d3733294059434455692977/calendar.html"></iframe>
+
+    <script>
+        const sala1 = document.getElementById('sala1');
+        const sala2 = document.getElementById('sala2');
+        
+        // Tempo de exibição de cada sala em milissegundos (30000 ms = 30 segundos)
+        const tempoExibicao = 30000; 
+
+        setInterval(() => {
+            if (sala1.classList.contains('ativo')) {
+                // Esconde a sala 1 e mostra a sala 2
+                sala1.classList.remove('ativo');
+                sala2.classList.add('ativo');
+                // Recarrega a sala 2 de fundo para garantir que o horário está atualizado
+                sala2.src = sala2.src; 
+            } else {
+                // Esconde a sala 2 e mostra a sala 1
+                sala2.classList.remove('ativo');
+                sala1.classList.add('ativo');
+                // Recarrega a sala 1 de fundo para garantir que o horário está atualizado
+                sala1.src = sala1.src; 
+            }
+        }, tempoExibicao);
+    </script>
 </body>
 </html>
