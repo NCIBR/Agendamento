@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel de Salas Teams</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; font-family: sans-serif; background-color: #333; }
+        .container { display: flex; width: 100%; height: 100%; }
+        .sala { width: 50%; height: 100%; border: none; box-sizing: border-box; }
+        .sala:first-child { border-right: 5px solid #222; } /* Linha divisória */
+    </style>
+    <!-- Recarrega a página inteira a cada 5 minutos (300 segundos) para garantir sincronia -->
+    <meta http-equiv="refresh" content="300">
+</head>
+<body>
+    <div class="container">
+        <iframe class="sala" src="https://outlook.office365.com/calendar/published/74e2d162a59e448c9bcda25ba87d6562@ncibr.com.br/3ac4252952114f818e77fda80dbd8aa716538616911842113870/calendar.html"></iframe>
+        <iframe class="sala" src="https://outlook.office365.com/calendar/published/3e35e5592a76415185864585b2f46b06@ncibr.com.br/9ebacd812cbf4a8fa79b06334754d3733294059434455692977/calendar.html"></iframe>
+    </div>
+</body>
+</html>
